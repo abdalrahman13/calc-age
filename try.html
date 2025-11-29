@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>try</title>
+    <!-- <link
+      rel="stylesheet"
+      href="../bootstrap-5.3.8-dist/css/bootstrap.min.css"
+    /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Jomhuria&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    /> -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Open Sans", sans-serif;
+        padding: 5px;
+        min-height: 2000px;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      button {
+        background-color: blue;
+        color: white;
+        padding: 10px;
+        border-radius: 10px;
+        margin: 15px;
+        cursor: pointer;
+      }
+      .clear {
+        background-color: blue;
+        color: white;
+        padding: 10px;
+        border-radius: 10px;
+        margin: 15px;
+        cursor: pointer;
+        position: fixed;
+        bottom: 10px;
+      }
+      .local {
+        left: 10px;
+      }
+      .session {
+        right: 10px;
+      }
+      form > * {
+        display: block;
+        margin: 20px auto;
+      }
+      .age {
+        padding: 10px;
+        width: 500px;
+        border-radius: 10px;
+        border: 1px solid #d9d9d9;
+      }
+      input[type="submit"] {
+        background-color: blue;
+        color: white;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+      }
+      #show {
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #d9d9d9;
+        display: block;
+        width: 500px;
+        outline: none;
+      }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <button class="clear local" id="local">Clear Local Storage</button>
+    <button class="clear session" id="session">Clear Session Storage</button>
+
+    <form action="">
+      <input
+        type="date"
+        name="age"
+        id="age1"
+        class="age"
+        placeholder="Write Your Age"
+      />
+      <input type="submit" value="Submit" id="submit1" />
+      <input
+        type="date"
+        name="age"
+        id="age2"
+        class="age"
+        placeholder="Write Your Age"
+      />
+      <input
+        type="date"
+        name="age"
+        id="age3"
+        class="age"
+        placeholder="Write Your Age"
+      />
+      <input type="submit" value="Submit" id="submit2" />
+      <input
+        type="text"
+        name="age"
+        id="age"
+        class="age"
+        placeholder="Write Your Age"
+      />
+      <input type="text" name="show" id="show" placeholder="Show" />
+    </form>
+    <button class="clear local" id="local">Clear Local Storage</button>
+    <button class="clear session" id="session">Clear Session Storage</button>
+
+    <div class="a">
+      <div class="b">
+        <div class="c"></div>
+        <div class="d"></div>
+      </div>
+    </div>
+
+    <script>
+      let ageInp = document.querySelector("#age");
+      let submit1 = document.getElementById("submit1");
+      let submit2 = document.getElementById("submit2");
+      let show = document.getElementById("show");
+      let age1 = document.getElementById("age1");
+      let age2 = document.getElementById("age2");
+      let age3 = document.getElementById("age3");
+
+      function formatDuration(ms) {
+        const sec = 1000;
+        const minute = sec * 60;
+        const hour = minute * 60;
+        const day = hour * 24;
+        const week = day * 7;
+        const month = day * 30.4375;
+        const year = day * 365.25;
+
+        let years = Math.floor(ms / year);
+        ms %= year;
+
+        let months = Math.floor(ms / month);
+        ms %= month;
+
+        let weeks = Math.floor(ms / week);
+        ms %= week;
+
+        let days = Math.floor(ms / day);
+        ms %= day;
+
+        let hours = Math.floor(ms / hour);
+        ms %= hour;
+
+        let minutes = Math.floor(ms / minute);
+        ms %= minute;
+
+        let seconds = Math.floor(ms / sec);
+        ms %= sec;
+
+        return `${years} Years ${months} Months ${weeks} Weeks ${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`;
+      }
+      submit1.addEventListener("click", function (e) {
+        e.preventDefault();
+        age1Val = age1.value;
+        console.log(age1Val);
+
+        let birthday = new Date(age1Val);
+        let dateNow = new Date();
+        let age = dateNow - birthday;
+        show.value = formatDuration(age);
+      });
+      submit2.addEventListener("click", function (e) {
+        e.preventDefault();
+        let birthday1 = new Date(age2.value);
+        let birthday2 = new Date(age3.value);
+        let age = birthday2 - birthday1;
+        if (age < 0) {
+          age = -age;
+        }
+        show.value = formatDuration(age);
+      });
+    </script>
+    <!-- <script src="try.js"></script> -->
+  </body>
+</html>
